@@ -5,5 +5,23 @@ pipeline:
   template:
     templateRef: swatiticket
     versionLabel: v1
+    templateInputs:
+      stages:
+        - stage:
+            identifier: custom
+            type: Custom
+            spec:
+              execution:
+                steps:
+                  - step:
+                      identifier: Manisha
+                      template:
+                        templateInputs:
+                          type: ShellScript
+                          spec:
+                            environmentVariables:
+                              - name: test
+                                type: String
+                                value: <+input>
   projectIdentifier: Manisha
   orgIdentifier: default

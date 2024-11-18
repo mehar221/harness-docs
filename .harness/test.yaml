@@ -1,0 +1,26 @@
+inputSet:
+  name: test
+  identifier: test
+  orgIdentifier: default
+  projectIdentifier: Manisha
+  pipeline:
+    identifier: tempPipeline
+    template:
+      templateInputs:
+        stages:
+          - stage:
+              identifier: custom
+              type: Custom
+              spec:
+                execution:
+                  steps:
+                    - step:
+                        identifier: Manisha
+                        template:
+                          templateInputs:
+                            type: ShellScript
+                            spec:
+                              environmentVariables:
+                                - name: test
+                                  type: String
+                                  value: test

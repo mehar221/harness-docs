@@ -1,0 +1,9 @@
+pipeline:
+  name: tempPipeline
+  identifier: tempPipeline
+  tags: {}
+  template:
+    templateRef: swatiticket
+    versionLabel: v1
+  projectIdentifier: Manisha
+  orgIdentifier: default

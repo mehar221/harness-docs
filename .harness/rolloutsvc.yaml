@@ -16,7 +16,7 @@ service:
                   connectorRef: githubconnector
                   gitFetchType: Branch
                   paths:
-                    - roll-out deployment/templates/
+                    - roll-out deployment/templates
                   repoName: harness-docs
                   branch: main
               valuesPaths:

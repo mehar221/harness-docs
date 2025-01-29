@@ -17,7 +17,7 @@ service:
                   gitFetchType: Branch
                   paths:
                     - roll-out deployment/templates
-                  repoName: harness-docs
+                  repoName: <+input>
                   branch: main
               valuesPaths:
                 - roll-out deployment/values.yaml

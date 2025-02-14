@@ -1,6 +1,6 @@
 app:
   name: my-app
-  namespace: default
+  namespace: test-ns
   replicas: 3
   port: 8080
 

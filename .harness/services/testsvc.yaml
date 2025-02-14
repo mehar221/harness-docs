@@ -2,8 +2,6 @@
 service:
   name: testt-svc
   identifier: testtsvc
-  orgIdentifier: default
-  projectIdentifier: Manisha
   serviceDefinition:
     spec:
       manifests:

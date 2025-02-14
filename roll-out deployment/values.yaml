@@ -1,11 +1,11 @@
 app:
   name: my-app
-  namespace: test-ns
+  namespace: manisha-ns
   replicas: 3
   port: 8080
 
 image:
-  repository: library/nginx
+  repository: latest/nginx
   tag: "latest"
 
 

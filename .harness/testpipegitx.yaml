@@ -28,7 +28,7 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
-     - stage:
+    - stage:
         name: hello
         identifier: hello
         description: ""
@@ -51,4 +51,3 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
-    

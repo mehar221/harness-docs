@@ -28,9 +28,9 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
-   - stage:
-        name: hi
-        identifier: hi
+     - stage:
+        name: hello
+        identifier: hello
         description: ""
         type: Custom
         spec:
@@ -51,3 +51,4 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
+    

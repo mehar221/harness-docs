@@ -1,0 +1,28 @@
+inputSet:
+  name: new-test
+  identifier: newtest
+  orgIdentifier: default
+  projectIdentifier: Manisha
+  pipeline:
+    identifier: newpipeline
+    stages:
+      - stage:
+          identifier: test
+          type: Deployment
+          spec:
+            services:
+              values:
+                - serviceRef: newsvcnew
+                  serviceInputs:
+                    serviceDefinition:
+                      type: Kubernetes
+                      spec:
+                        manifests:
+                          - manifest:
+                              identifier: rolloutsvc
+                              type: K8sManifest
+                              spec:
+                                store:
+                                  type: Github
+                                  spec:
+                                    repoName: harness-docs

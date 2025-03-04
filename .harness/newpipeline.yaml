@@ -35,10 +35,16 @@ pipeline:
         type: Deployment
         spec:
           deploymentType: Kubernetes
-          services:
-            values: <+input>
-            metadata:
-              parallel: false
+          service:
+            serviceRef: rolloutsvc
+            serviceInputs:
+              serviceDefinition:
+                type: Kubernetes
+                spec:
+                  artifacts:
+                    primary:
+                      primaryArtifactRef: <+input>
+                      sources: <+input>
           environment:
             environmentRef: harnessdevenv
             deployToAll: false
@@ -47,21 +53,24 @@ pipeline:
           execution:
             steps:
               - step:
-                  name: Rollout Deployment
-                  identifier: rolloutDeployment
-                  type: K8sRollingDeploy
-                  timeout: 10m
+                  type: TerraformPlan
+                  name: TerraformPlan_1
+                  identifier: TerraformPlan_1
                   spec:
-                    skipDryRun: false
-                    pruningEnabled: false
-            rollbackSteps:
-              - step:
-                  name: Rollback Rollout Deployment
-                  identifier: rollbackRolloutDeployment
-                  type: K8sRollingRollback
+                    provisionerIdentifier: manisha
+                    configuration:
+                      command: Apply
+                      configFiles:
+                        store:
+                          spec:
+                            repoName: account.First-Repo
+                            gitFetchType: Branch
+                            branch: master
+                            folderPath: .harness/main.tf
+                          type: HarnessCode
+                      secretManagerRef: harnessSecretManager
                   timeout: 10m
-                  spec:
-                    pruningEnabled: false
+            rollbackSteps: []
         tags: {}
         failureStrategies:
           - onFailure:

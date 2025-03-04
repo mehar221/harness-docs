@@ -48,6 +48,15 @@ pipeline:
                       secretManagerRef: harnessSecretManager
                       skipRefreshCommand: false
                   timeout: 10m
+              - step:
+                  type: TerraformApply
+                  name: TerraformApply_1
+                  identifier: TerraformApply_1
+                  spec:
+                    provisionerIdentifier: manisha
+                    configuration:
+                      type: InheritFromPlan
+                  timeout: 10m
             rollbackSteps: []
         tags: {}
         failureStrategies:

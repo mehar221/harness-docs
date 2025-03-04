@@ -1,0 +1,22 @@
+inputSet:
+  name: test
+  identifier: test
+  orgIdentifier: default
+  projectIdentifier: Manisha
+  pipeline:
+    identifier: newpipeline
+    stages:
+      - stage:
+          identifier: test
+          type: Deployment
+          spec:
+            services:
+              values:
+                - serviceRef: rolloutsvc
+                  serviceInputs:
+                    serviceDefinition:
+                      type: Kubernetes
+                      spec:
+                        artifacts:
+                          primary:
+                            primaryArtifactRef: rolloutsource

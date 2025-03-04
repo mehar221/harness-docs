@@ -43,9 +43,10 @@ pipeline:
                             repoName: account.First-Repo
                             gitFetchType: Branch
                             branch: master
-                            folderPath: .harness/main.tf
+                            folderPath: .harness/
                           type: HarnessCode
                       secretManagerRef: harnessSecretManager
+                      skipRefreshCommand: false
                   timeout: 10m
             rollbackSteps: []
         tags: {}

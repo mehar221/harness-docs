@@ -25,7 +25,7 @@ service:
               enableDeclarativeRollback: false
       artifacts:
         primary:
-          primaryArtifactRef: <+input>
+          primaryArtifactRef: rolloutsource
           sources:
             - spec:
                 connectorRef: dockerconnector

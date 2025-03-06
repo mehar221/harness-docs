@@ -6,8 +6,8 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: test
-        identifier: test
+        name: testttt
+        identifier: testttt
         description: ""
         type: Deployment
         spec:
@@ -22,34 +22,21 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: TerraformPlan
-                  name: TerraformPlan_1
-                  identifier: TerraformPlan_1
-                  spec:
-                    provisionerIdentifier: manisha
-                    configuration:
-                      command: Apply
-                      configFiles:
-                        store:
-                          spec:
-                            repoName: account.First-Repo
-                            gitFetchType: Branch
-                            branch: master
-                            folderPath: .harness/
-                          type: HarnessCode
-                      secretManagerRef: harnessSecretManager
-                      skipRefreshCommand: false
+                  name: Rollout Deployment
+                  identifier: rolloutDeployment
+                  type: K8sRollingDeploy
                   timeout: 10m
+                  spec:
+                    skipDryRun: false
+                    pruningEnabled: false
+            rollbackSteps:
               - step:
-                  type: TerraformApply
-                  name: TerraformApply_1
-                  identifier: TerraformApply_1
-                  spec:
-                    provisionerIdentifier: manisha
-                    configuration:
-                      type: InheritFromPlan
+                  name: Rollback Rollout Deployment
+                  identifier: rollbackRolloutDeployment
+                  type: K8sRollingRollback
                   timeout: 10m
-            rollbackSteps: []
+                  spec:
+                    pruningEnabled: false
         tags: {}
         failureStrategies:
           - onFailure:

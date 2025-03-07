@@ -1,6 +1,7 @@
 inputSet:
-  name: test-input-set
-  identifier: testinputset
+  name: testt-new-input-sett
+  tags: {}
+  identifier: testtnewinputsett
   orgIdentifier: default
   projectIdentifier: Manisha
   pipeline:
@@ -12,6 +13,7 @@ inputSet:
           spec:
             service:
               serviceRef: rolloutsvc
+              serviceInputs: ""
             environment:
               environmentRef: harnessdevenv
               infrastructureDefinitions:

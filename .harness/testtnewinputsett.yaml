@@ -1,0 +1,18 @@
+inputSet:
+  name: testt-new-input-sett
+  identifier: testtnewinputsett
+  orgIdentifier: default
+  projectIdentifier: Manisha
+  pipeline:
+    identifier: deploypipelineinputsettest
+    stages:
+      - stage:
+          identifier: testttt
+          type: Deployment
+          spec:
+            service:
+              serviceRef: rolloutsvc
+            environment:
+              environmentRef: harnessdevenv
+              infrastructureDefinitions:
+                - identifier: harnessk8sinfra

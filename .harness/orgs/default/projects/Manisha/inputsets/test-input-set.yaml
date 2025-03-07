@@ -1,7 +1,7 @@
 inputSet:
-  name: testt-new-input-sett
+  name: testt-new-input-sett-new
   tags: {}
-  identifier: testtnewinputsett
+  identifier: testtnewinputsettnew
   orgIdentifier: default
   projectIdentifier: Manisha
   pipeline:

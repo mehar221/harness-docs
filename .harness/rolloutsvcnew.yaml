@@ -1,0 +1,5 @@
+service:
+  name: rollout-svc-new
+  identifier: rolloutsvcnew
+  orgIdentifier: default
+  projectIdentifier: manisha2

@@ -25,13 +25,5 @@ service:
               enableDeclarativeRollback: false
       artifacts:
         primary:
-          primaryArtifactRef: <+input>
-          sources:
-            - spec:
-                connectorRef: account.harnessImage
-                imagePath: library/nginx
-                tag: latest
-                digest: ""
-              identifier: rolloutsvc
-              type: DockerRegistry
+          primaryArtifactRef: ""
     type: Kubernetes

@@ -14,14 +14,6 @@ pipeline:
           deploymentType: Kubernetes
           service:
             serviceRef: rolloutsvcnew
-            serviceInputs:
-              serviceDefinition:
-                type: Kubernetes
-                spec:
-                  artifacts:
-                    primary:
-                      primaryArtifactRef: <+input>
-                      sources: <+input>
           environment:
             environmentRef: devenv
             gitBranch: main

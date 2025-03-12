@@ -35,3 +35,5 @@ service:
               identifier: rolloutsource
               type: DockerRegistry
     type: Kubernetes
+  tags:
+    cd-svc: ""

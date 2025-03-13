@@ -1,7 +1,7 @@
 package pipeline
 
 # Define the allowed infrastructure connector
-allowed_infra_connector := "harnessk8sconnector"
+allowed_infra_connector := "harnessk8s"
 
 deny[msg] {
     input.pipeline.stages[_].stage.spec.infrastructure.infrastructureDefinition.spec.connector.identifier != allowed_infra_connector

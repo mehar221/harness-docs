@@ -34,6 +34,12 @@ service:
                 digest: ""
               identifier: rolloutsource
               type: DockerRegistry
+      variables:
+        - name: rolloutsvcvar
+          type: String
+          description: testtt
+          required: false
+          value: <+input>
     type: Kubernetes
   tags:
     cd-svc: ""

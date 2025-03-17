@@ -13,7 +13,8 @@ pipeline:
         spec:
           deploymentType: Kubernetes
           service:
-            serviceRef: rolloutsvc
+            serviceRef: <+input>
+            serviceInputs: <+input>
           environment:
             environmentRef: harnessdevenv
             deployToAll: false

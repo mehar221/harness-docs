@@ -1,0 +1,14 @@
+inputSet:
+  name: test-input-set
+  identifier: testinputset
+  orgIdentifier: default
+  projectIdentifier: Manisha
+  pipeline:
+    identifier: newpipeline
+    stages:
+      - stage:
+          identifier: testttt
+          type: Deployment
+          spec:
+            service:
+              serviceRef: rolloutsvc

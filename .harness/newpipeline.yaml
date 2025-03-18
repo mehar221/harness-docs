@@ -117,3 +117,6 @@ pipeline:
                       jq --version
 
                       curl --version
+        when:
+          pipelineStatus: Success
+          condition: "false"

@@ -80,4 +80,7 @@ pipeline:
                     connectorRef: account.harnessImage
                     image: library/python
                     shell: Sh
-                    command: cat /etc/os-release
+                    command: |-
+                      cat /etc/os-release
+                      apt install curl
+                      apt install jq

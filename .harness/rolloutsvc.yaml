@@ -42,4 +42,5 @@ service:
           value: <+input>
     type: Kubernetes
   tags:
-    cd-svc: ""
+    Name: Manisha
+    Test: dashboard

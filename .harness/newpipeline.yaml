@@ -88,3 +88,4 @@ pipeline:
                       echo "deb http://deb.debian.org/debian bookworm-updates main" | tee -a /etc/apt/sources.list
                       apt update
                       apt-get install -y jq
+                      jq --version

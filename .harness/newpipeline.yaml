@@ -89,3 +89,6 @@ pipeline:
                       apt update
                       apt-get install -y jq
                       jq --version
+        when:
+          pipelineStatus: Success
+          condition: "false"

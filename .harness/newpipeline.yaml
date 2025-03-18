@@ -120,3 +120,29 @@ pipeline:
         when:
           pipelineStatus: Success
           condition: "false"
+    - stage:
+        name: custom stage
+        identifier: custom_stage
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          curl --version
+                          microdnf install -y jq
+                          jq --version
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}

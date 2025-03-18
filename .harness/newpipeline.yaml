@@ -92,3 +92,25 @@ pipeline:
         when:
           pipelineStatus: Success
           condition: "false"
+    - stage:
+        name: test-build-new
+        identifier: testbuildnew
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: false
+          infrastructure:
+            useFromStage: testbuild
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: account.harnessImage
+                    image: library/python
+                    shell: Sh
+                    command: |-
+                      jq --version
+                      curl --version

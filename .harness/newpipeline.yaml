@@ -140,7 +140,7 @@ pipeline:
                       spec:
                         script: |-
                           curl --version
-                          dnf install -y jq
+                          microdnfdnf install -y jq
                           jq --version
                     environmentVariables: []
                     outputVariables: []

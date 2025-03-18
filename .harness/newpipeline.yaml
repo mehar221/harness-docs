@@ -48,3 +48,29 @@ pipeline:
         when:
           pipelineStatus: Success
           condition: "false"
+    - stage:
+        name: test-build
+        identifier: testbuild
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: false
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: harnessk8sconnector
+              namespace: harness-delegate-ng
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: account.harnessImage
+                    image: library/python
+                    shell: Sh
+                    command: dnf install curl

@@ -145,4 +145,21 @@ pipeline:
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
+                  when:
+                    stageStatus: Success
+                    condition: "false"
+              - stepGroup:
+                  name: Step_temp_one
+                  identifier: Step_temp_one
+                  template:
+                    templateRef: Stepgrouptemp
+                    versionLabel: v1
+                    gitBranch: main
+              - stepGroup:
+                  name: Step_temp_2
+                  identifier: Step_temp_2
+                  template:
+                    templateRef: Stepgrouptemp
+                    versionLabel: v1
+                    gitBranch: main
         tags: {}

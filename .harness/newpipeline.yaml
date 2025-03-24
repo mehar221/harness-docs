@@ -123,43 +123,7 @@ pipeline:
     - stage:
         name: custom stage
         identifier: custom_stage
-        description: ""
-        type: Custom
-        spec:
-          execution:
-            steps:
-              - step:
-                  type: ShellScript
-                  name: ShellScript_1
-                  identifier: ShellScript_1
-                  spec:
-                    shell: Bash
-                    executionTarget: {}
-                    source:
-                      type: Inline
-                      spec:
-                        script: |-
-                          curl --version
-                          microdnfdnf install -y jq
-                          jq --version
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
-                  when:
-                    stageStatus: Success
-                    condition: "false"
-              - stepGroup:
-                  name: Step_temp_one
-                  identifier: Step_temp_one
-                  template:
-                    templateRef: Stepgrouptemp
-                    versionLabel: v1
-                    gitBranch: main
-              - stepGroup:
-                  name: Step_temp_2
-                  identifier: Step_temp_2
-                  template:
-                    templateRef: Stepgrouptemp
-                    versionLabel: v1
-                    gitBranch: main
         tags: {}
+        template:
+          templateRef: test_stage
+          versionLabel: v2

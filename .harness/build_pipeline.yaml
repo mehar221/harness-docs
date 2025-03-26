@@ -1,84 +1,39 @@
 pipeline:
   name: build_pipeline
   identifier: build_pipeline
+  tags: {}
+  template:
+    templateRef: reconsiletest
+    versionLabel: v1
+    gitBranch: main
+    templateInputs:
+      properties:
+        ci:
+          codebase:
+            build: <+input>
+      stages:
+        - stage:
+            identifier: testdeploy
+            type: Deployment
+            spec:
+              service:
+                serviceInputs:
+                  serviceDefinition:
+                    type: Kubernetes
+                    spec:
+                      variables:
+                        - name: rolloutsvcvar
+                          type: String
+                          value: <+input>
+              execution:
+                steps:
+                  - step:
+                      identifier: testtemplate
+                      template:
+                        templateInputs:
+                          type: Container
+                          spec:
+                            envVariables:
+                              SCHEMA_REGISTRY_URL: <+input>.allowedValues(test, testone)
   projectIdentifier: Manisha
   orgIdentifier: default
-  tags: {}
-  properties:
-    ci:
-      codebase:
-        repoName: account.First-Repo
-        build: <+input>
-  stages:
-    - stage:
-        name: buildd
-        identifier: buildd
-        description: ""
-        type: CI
-        spec:
-          cloneCodebase: true
-          infrastructure:
-            type: KubernetesDirect
-            spec:
-              connectorRef: harnessk8sconnector
-              namespace: harness-delegate-ng
-              automountServiceAccountToken: true
-              nodeSelector: {}
-              os: Linux
-          execution:
-            steps:
-              - step:
-                  type: Run
-                  name: Run_1
-                  identifier: Run_1
-                  spec:
-                    connectorRef: account.harnessImage
-                    image: /
-                    shell: Sh
-                    command: echo "hey"
-        when:
-          pipelineStatus: Success
-          condition: "false"
-    - stage:
-        name: test-deploy
-        identifier: testdeploy
-        description: ""
-        type: Deployment
-        spec:
-          deploymentType: Kubernetes
-          service:
-            serviceRef: rolloutsvc
-            serviceInputs:
-              serviceDefinition:
-                type: Kubernetes
-                spec:
-                  variables:
-                    - name: rolloutsvcvar
-                      type: String
-                      value: <+input>
-          environment:
-            environmentRef: harnessdevenv
-            deployToAll: false
-            infrastructureDefinitions:
-              - identifier: harnessk8sinfra
-          execution:
-            steps:
-              - step:
-                  name: test-template
-                  identifier: testtemplate
-                  template:
-                    templateRef: tetcontainerstep
-                    versionLabel: v2
-                    templateInputs:
-                      type: Container
-                      spec:
-                        envVariables:
-                          SCHEMA_REGISTRY_URL: <+input>.allowedValues(test, testone)
-            rollbackSteps: []
-        tags: {}
-        failureStrategies:
-          - onFailure:
-              errors:
-                - AllErrors
-              action:
-                type: StageRollback

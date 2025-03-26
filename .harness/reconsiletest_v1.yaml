@@ -82,5 +82,11 @@ template:
                   - AllErrors
                 action:
                   type: StageRollback
+    variables:
+      - name: wqweqq
+        type: String
+        description: ""
+        required: false
+        value: <+input>
   identifier: reconsiletest
   versionLabel: v1

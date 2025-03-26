@@ -88,5 +88,10 @@ template:
         description: ""
         required: false
         value: <+input>
+      - name: Name
+        type: String
+        description: ""
+        required: false
+        value: Manisha
   identifier: reconsiletest
   versionLabel: v1

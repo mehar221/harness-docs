@@ -1,0 +1,40 @@
+template:
+  name: test-container-step
+  identifier: tetcontainerstep
+  versionLabel: v2
+  type: Step
+  projectIdentifier: Manisha
+  orgIdentifier: default
+  tags: {}
+  spec:
+    type: Container
+    spec:
+      connectorRef: account.harnessImage
+      image: nginx:latest
+      command: echo "hello"
+      shell: Sh
+      infrastructure:
+        type: KubernetesDirect
+        spec:
+          connectorRef: harnessk8sconnector
+          namespace: harness-delegate-ng
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 500Mi
+          annotations: {}
+          labels: {}
+          containerSecurityContext:
+            capabilities:
+              drop: []
+              add: []
+          nodeSelector: {}
+      reports:
+        type: JUnit
+        spec:
+          paths: []
+      outputVariables: []
+      envVariables:
+        SCHEMA_REGISTRY_URL: <+input>.allowedValues(test, testone)
+      imagePullPolicy: IfNotPresent
+    timeout: 2m

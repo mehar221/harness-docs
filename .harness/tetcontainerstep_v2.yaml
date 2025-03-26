@@ -11,7 +11,9 @@ template:
     spec:
       connectorRef: account.harnessImage
       image: nginx:latest
-      command: echo "hello"
+      command: |-
+        echo "hello"
+        echo "This is updation"
       shell: Sh
       infrastructure:
         type: KubernetesDirect

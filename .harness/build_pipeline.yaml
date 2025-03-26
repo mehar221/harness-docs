@@ -35,5 +35,9 @@ pipeline:
                           spec:
                             envVariables:
                               SCHEMA_REGISTRY_URL: <+input>.allowedValues(test, testone)
+      variables:
+        - name: wqweqq
+          type: String
+          value: <+input>
   projectIdentifier: Manisha
   orgIdentifier: default

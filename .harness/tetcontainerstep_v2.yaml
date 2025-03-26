@@ -36,5 +36,6 @@ template:
       outputVariables: []
       envVariables:
         SCHEMA_REGISTRY_URL: <+input>.allowedValues(test, testone)
+        Name: Manisha
       imagePullPolicy: IfNotPresent
     timeout: 2m

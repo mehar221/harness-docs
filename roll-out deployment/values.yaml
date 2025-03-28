@@ -1,7 +1,7 @@
 app:
   name: my-app
   namespace: harness-delegate-ng
-  replicas: 3
+  replicas: 1
   port: 8080
 
 image:

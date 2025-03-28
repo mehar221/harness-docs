@@ -5,7 +5,7 @@ app:
   port: 8080
 
 image:
-  repository: python
+  repository: library/python
   tag: "latest"
 
 

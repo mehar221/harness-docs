@@ -13,7 +13,7 @@ service:
               store:
                 type: Github
                 spec:
-                  connectorRef: terraformgitconnector
+                  connectorRef: HarnessUIgitconnectot
                   gitFetchType: Branch
                   paths:
                     - roll-out deployment/templates

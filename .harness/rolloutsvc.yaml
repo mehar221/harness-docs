@@ -29,17 +29,11 @@ service:
           sources:
             - spec:
                 connectorRef: dockerconnector
-                imagePath: library/nginx
+                imagePath: library/python
                 tag: latest
                 digest: ""
               identifier: rolloutsource
               type: DockerRegistry
-      variables:
-        - name: rolloutsvcvar
-          type: String
-          description: testtt
-          required: false
-          value: <+input>
     type: Kubernetes
   tags:
     Name: Manisha

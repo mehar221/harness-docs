@@ -16,11 +16,10 @@ service:
                   connectorRef: HarnessUIgitconnectot
                   gitFetchType: Branch
                   paths:
-                    - roll-out deployment/templates
+                    - roll-out deployment/hardcoded-files/deploy.yaml
+                    - roll-out deployment/hardcoded-files/service.yaml
                   repoName: harness-docs
                   branch: main
-              valuesPaths:
-                - roll-out deployment/values.yaml
               skipResourceVersioning: false
               enableDeclarativeRollback: true
       artifacts:

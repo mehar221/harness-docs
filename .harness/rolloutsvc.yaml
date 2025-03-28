@@ -22,7 +22,7 @@ service:
               valuesPaths:
                 - roll-out deployment/values.yaml
               skipResourceVersioning: false
-              enableDeclarativeRollback: false
+              enableDeclarativeRollback: true
       artifacts:
         primary:
           primaryArtifactRef: rolloutsource

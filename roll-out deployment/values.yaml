@@ -1,6 +1,6 @@
 app:
   name: my-app
-  namespace: manisha-ns
+  namespace: harness-delegate-ng
   replicas: 3
   port: 8080
 

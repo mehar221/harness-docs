@@ -16,15 +16,6 @@ pipeline:
             identifier: testdeploy
             type: Deployment
             spec:
-              service:
-                serviceInputs:
-                  serviceDefinition:
-                    type: Kubernetes
-                    spec:
-                      variables:
-                        - name: rolloutsvcvar
-                          type: String
-                          value: <+input>
               execution:
                 steps:
                   - step:

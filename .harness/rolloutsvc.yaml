@@ -40,7 +40,7 @@ service:
             actions:
               - TemplateManifest
             store:
-              content: export SOPS_AGE_KEY=<+secrets.getValue("account.awssecretmanager://aws_kms_connector/43af0ce2-8859-48bf-8d9a-4388d966b7d4")>
+              content: echo "<+secrets.getValue("awssecretmanager://Test_AWS_KMS_MANAGER/eks/ccm-lab-eks-welu-8at9jMDS")>"
     type: Kubernetes
   tags:
     Name: Manisha

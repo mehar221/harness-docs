@@ -15,6 +15,7 @@ template:
         echo "hello"
         echo "This is updation"
         echo "This is new change"
+        echo "test"
       shell: Sh
       infrastructure:
         type: KubernetesDirect

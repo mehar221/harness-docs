@@ -33,6 +33,14 @@ service:
                 digest: ""
               identifier: rolloutsource
               type: DockerRegistry
+      hooks:
+        - postHook:
+            identifier: Testhook
+            storeType: Inline
+            actions:
+              - TemplateManifest
+            store:
+              content: echo "<+secrets.getValue("Var_new")>"
     type: Kubernetes
   tags:
     Name: Manisha

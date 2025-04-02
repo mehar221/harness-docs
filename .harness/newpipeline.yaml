@@ -124,4 +124,4 @@ pipeline:
             variables:
               - name: Test_var
                 type: String
-                value: <+input>.selectOneFrom(Test,Hello,Hi)
+                value: <+input>.allowedValues(Test,Hello,Hi)

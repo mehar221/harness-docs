@@ -14,14 +14,6 @@ pipeline:
           deploymentType: Kubernetes
           service:
             serviceRef: rolloutsvc
-            serviceInputs:
-              serviceDefinition:
-                type: Kubernetes
-                spec:
-                  variables:
-                    - name: rolloutsvcvar
-                      type: String
-                      value: <+input>
           environment:
             environmentRef: harnessdevenv
             deployToAll: false
@@ -127,3 +119,9 @@ pipeline:
         template:
           templateRef: test_stage
           versionLabel: v2
+          templateInputs:
+            type: Custom
+            variables:
+              - name: Test_var
+                type: String
+                value: <+input>.selectOneFrom(Test,Hello,Hi)

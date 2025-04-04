@@ -40,7 +40,7 @@ service:
             actions:
               - FetchFiles
             store:
-              content: echo "hello"
+              content: helm repo update
     type: Kubernetes
   tags:
     Name: Manisha

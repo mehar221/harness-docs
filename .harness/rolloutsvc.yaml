@@ -34,13 +34,13 @@ service:
               identifier: rolloutsource
               type: DockerRegistry
       hooks:
-        - postHook:
+        - preHook:
             identifier: Testhook
             storeType: Inline
             actions:
-              - TemplateManifest
+              - FetchFiles
             store:
-              content: echo "<+secrets.getValue("awssecretmanager://Test_AWS_KMS_MANAGER/eks/ccm-lab-eks-welu-8at9jMDS")>"
+              content: echo "hello"
     type: Kubernetes
   tags:
     Name: Manisha

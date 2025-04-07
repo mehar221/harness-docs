@@ -1,0 +1,66 @@
+pipeline:
+  name: Test-ci-pipeline
+  identifier: Testcipipeline
+  projectIdentifier: Manisha
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: org.GithubconnectorCodeRepo
+        repoName: <+input>
+        build: <+input>
+        sparseCheckout: []
+  stages:
+    - stage:
+        name: Mystage-one
+        identifier: Mystageone
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+          buildIntelligence:
+            enabled: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: harnessk8sconnector
+              namespace: harness-delegate-ng
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: account.harnessImage
+                    image: library/nginx
+                    shell: Sh
+                    command: |-
+                      echo <+execution.steps.Run_1.retryCount>
+                      exit 1;
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: Retry
+                spec:
+                  retryCount: 2
+                  retryIntervals:
+                    - 5s
+                    - 10s
+                  onRetryFailure:
+                    action:
+                      type: MarkAsFailure
+  variables:
+    - name: Retry_count
+      type: String
+      description: ""
+      required: false
+      value: <+execution.steps.Run_1.retryCount>

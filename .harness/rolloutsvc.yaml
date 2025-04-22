@@ -43,4 +43,4 @@ service:
               content: echo "hello"
     type: Kubernetes
   tags:
-    svc-new: test
+    svcnew: test

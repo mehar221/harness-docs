@@ -43,5 +43,4 @@ service:
               content: echo "hello"
     type: Kubernetes
   tags:
-    Name: Manisha
-    Test: dashboard
+    cve-new: ""

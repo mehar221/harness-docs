@@ -44,3 +44,4 @@ service:
     type: Kubernetes
   tags:
     svcnew: test
+    svcnew1: test

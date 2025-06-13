@@ -27,11 +27,10 @@ pipeline:
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
-        tags: {}
-           - step:
+              - step:
                   type: ShellScript
-                  name: ShellScript_1
-                  identifier: ShellScript_1
+                  name: ShellScript_2
+                  identifier: ShellScript_2
                   spec:
                     shell: Bash
                     executionTarget: {}

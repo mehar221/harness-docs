@@ -1,9 +1,9 @@
 site_name: 'Example Documentation'
 repo_url: https://github.com/mehar221/harness-docs
-edit_uri: url to your index.md
+edit_uri: https://github.com/mehar221/harness-docs/blob/main/docs/README.md
 
 nav:
-  - Home: index.md
+  - Home: README.md
 
 plugins:
   - techdocs-core

@@ -4,7 +4,7 @@ metadata:
   name: my-service
   description: A valid service
   annotations:
-    backstage.io/techdocs-ref: value
+    backstage.io/techdocs-ref: dir:.
   tags:
     - java
 spec:

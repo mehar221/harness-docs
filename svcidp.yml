@@ -1,0 +1,14 @@
+apiVersion: harness.io/v1
+kind: Component
+type: service
+identifier: service
+metadata:
+  name: service
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+owner: user:account/manisha.choudhary@harness.io
+orgIdentifier: default
+projectIdentifier: Manisha
+spec:
+  lifecycle: prod
+  owner: user:account/manisha.choudhary@harness.io

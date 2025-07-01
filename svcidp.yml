@@ -1,0 +1,12 @@
+apiVersion: harness.io/v1
+kind: Component
+type: svc
+identifier: service2
+name: service2
+owner: user:account/manisha.choudhary@harness.io
+orgIdentifier: default
+projectIdentifier: Abhi
+spec:
+  lifecycle: prod
+  ownedBy:
+  - user:account/manisha.choudhary@harness.io

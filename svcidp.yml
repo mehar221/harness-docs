@@ -2,10 +2,13 @@ apiVersion: harness.io/v1
 kind: Component
 type: svc
 identifier: service2
-name: service2
 owner: user:account/manisha.choudhary@harness.io
 orgIdentifier: default
 projectIdentifier: Abhi
+metadata:
+  name: service2
+  annotations:
+    backstage.io/techdocs-ref: dir:.
 spec:
   lifecycle: prod
   ownedBy:

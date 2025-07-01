@@ -1,12 +1,16 @@
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: my-service
-  description: A valid service
-  annotations:
-    backstage.io/techdocs-ref: dir:.
-  tags:
-    - java
+apiVersion: harness.io/v1
+kind: component
+name: service2
+identifier: service2
+type: svc
+owner: user:account/manisha.choudhary@harness.io
+scope: PROJECT
+projectIdentifier: Abhi
+project_name: Abhi
+orgIdentifier: default
+org_name: default
 spec:
-  type: service
-  lifecycle: production
+  lifecycle: prod
+metadata:
+  tags: []
+  description: ""

@@ -5,11 +5,12 @@ identifier: service2
 owner: user:account/manisha.choudhary@harness.io
 orgIdentifier: default
 projectIdentifier: Abhi
-metadata:
-  name: service2
-  annotations:
-    backstage.io/techdocs-ref: dir:.
 spec:
   lifecycle: prod
   ownedBy:
   - user:account/manisha.choudhary@harness.io
+metadata:
+  name: service2
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/source-location: https://github.com/mehar221/harness-docs/tree/main

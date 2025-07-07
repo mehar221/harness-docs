@@ -1,19 +1,20 @@
 apiVersion: harness.io/v1
 kind: Workflow
-name: pipeline
-identifier: pipeline
-type: pipeline
-owner: user:account/manisha.choudhary@harness.io
-scope: PROJECT
-projectIdentifier: Manisha
-project_name: Manisha
-orgIdentifier: default
-org_name: default
 metadata:
-  description: ""
+  name: pipeline
+  description: Harness custom pipeline to create your application.
   tags:
     - test
 spec:
+  type: pipeline
+  owner: user:account/manisha.choudhary@harness.io
+  lifecycle: prod
+  system: harness-system
+  scope: PROJECT
+  projectIdentifier: Manisha
+  project_name: Manisha
+  orgIdentifier: default
+  org_name: default
   parameters:
     - title: Service Details
       required:
@@ -30,7 +31,7 @@ spec:
           description: Mention the project name
   steps:
     - id: trigger
-      name: Creating your appication
+      name: Creating your application
       action: trigger:harness-custom-pipeline
       input:
         url:
@@ -42,4 +43,3 @@ spec:
     links:
       - title: Pipeline Details
         url: ${{ steps.trigger.output.PipelineUrl }}
-  lifecycle: prod

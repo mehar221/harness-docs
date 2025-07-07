@@ -4,7 +4,7 @@ type: svc
 identifier: service2
 owner: user:account/manisha.choudhary@harness.io
 orgIdentifier: default
-projectIdentifier: Abhi
+projectIdentifier: Manisha
 spec:
   lifecycle: prod
   ownedBy:

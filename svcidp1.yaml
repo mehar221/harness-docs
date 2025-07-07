@@ -1,0 +1,16 @@
+apiVersion: harness.io/v1
+kind: Component
+type: svc
+identifier: service2
+owner: user:account/manisha.choudhary@harness.io
+orgIdentifier: default
+projectIdentifier: Manisha
+spec:
+  lifecycle: prod
+  ownedBy:
+  - user:account/manisha.choudhary@harness.io
+metadata:
+  name: service2
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/source-location: url:https://github.com/mehar221/harness-docs/tree/main

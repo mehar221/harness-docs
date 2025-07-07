@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: pipeline
+  description: Harness custom pipeline to create your application.
+  tags:
+    - test
+spec:
+  type: pipeline
+  lifecycle: prod
+  owner: user:account/manisha.choudhary@harness.io
+  system: harness-system

@@ -1,17 +1,45 @@
-apiVersion: backstage.io/v1alpha1
-kind: Component
+apiVersion: harness.io/v1
+kind: Workflow
+name: pipeline
+identifier: pipeline
+type: pipeline
+owner: user:account/manisha.choudhary@harness.io
+scope: PROJECT
+projectIdentifier: Manisha
+project_name: Manisha
+orgIdentifier: default
+org_name: default
 metadata:
-  name: my-sample-service
-  description: My Sample service.
-  tags: [my-sample]
-  links:
-    - title: Website
-      url: https://www.apple.com/
-  annotations:
-    github.com/project-slug: mehar221/harness-docs
-    backstage.io/techdocs-ref: dir:../../
+  description: ""
+  tags:
+    - test
 spec:
-  type: Service
-  owner: my-sample-team
-  lifecycle: experimental
-  system: my-sample-system
+  parameters:
+    - title: Service Details
+      required:
+        - service_name
+      properties:
+        token:
+          title: Harness Token
+          type: string
+          ui:widget: password
+          ui:field: HarnessAuthToken
+        service_name:
+          title: Service Name
+          type: string
+          description: Mention the project name
+  steps:
+    - id: trigger
+      name: Creating your appication
+      action: trigger:harness-custom-pipeline
+      input:
+        url:
+          - Harness Pipeline URL
+        inputset:
+          service_name: ${{ parameters.service_name }}
+        apikey: ${{ parameters.token }}
+  output:
+    links:
+      - title: Pipeline Details
+        url: ${{ steps.trigger.output.PipelineUrl }}
+  lifecycle: prod

@@ -3,7 +3,7 @@ kind: Component
 metadata:
   name: my-sample-service
   description: My Sample service.
-  tags: my-sample
+  tags: [my-sample]
   links:
     - title: Website
       url: https://www.apple.com/

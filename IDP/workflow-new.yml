@@ -1,0 +1,92 @@
+apiVersion: harness.io/v1
+kind: Workflow
+type: component
+identifier: workflownew
+name: workflow-new
+owner: user:account/manisha.choudhary@harness.io
+orgIdentifier: default
+projectIdentifier: Abhi
+spec:
+  output:
+    links:
+    - title: Pipeline Details
+      url: ${{ steps.trigger.output.PipelineUrl }}
+    text:
+    - title: Harness Pipeline Status
+      content: |
+        Harness pipeline triggered for user IDs: `${{ parameters.user_ids | join(", ") }}`
+  lifecycle: prod
+  parameters:
+  - title: Component & Access Info
+    required:
+    - component_id
+    - owner
+    - user_ids
+    properties:
+      token:
+        title: Harness Token
+        type: string
+        ui:widget: password
+        ui:field: HarnessAuthToken
+        visible: false
+      service_name:
+        title: Service Name
+        type: string
+        description: Mention the project name
+      component_id:
+        title: Component Name
+        type: string
+        description: Unique name for the component
+        ui:field: EntityNamePicker
+      description:
+        title: Select Environments
+        type: array
+        items:
+          type: string
+          enum:
+          - production
+          - staging
+          - development
+        uniqueItems: true
+        ui:widget: checkboxes
+      owner:
+        title: Owner
+        type: string
+        ui:field: OwnerPicker
+        ui:options:
+          allowedKinds:
+          - Group
+      user_ids:
+        title: Developer User IDs
+        type: array
+        description: List of user IDs (e.g., GitHub usernames or login IDs)
+        items:
+          type: string
+        uniqueItems: true
+  steps:
+  - id: triggerPipeline
+    name: Trigger Harness Pipeline
+    action: trigger:harness-custom-pipeline
+    input:
+      url: https://app.harness.io/ng/account/akx2lmy5SnOFm549xPhFKQ/all/orgs/default/projects/Abhi/pipelines/testpipelineUAL/pipeline-studio/?storeType=INLINE
+      inputset:
+        service_name: ${{ parameters.service_name }}
+        system: ${{ parameters.component_id }}
+        domain: ${{ parameters.description | join(", ") }}
+        usernames: ${{ parameters.user_ids | join(",") }}
+      apikey: ${{ parameters.token }}
+      showOutputVariables: true
+  - id: register
+    name: Register in Backstage
+    action: catalog:register
+    input:
+      repoContentsUrl: ${{ steps.triggerPipeline.output.repoContentsUrl }}
+      catalogInfoPath: /catalog-info.yaml
+  ownedBy:
+  - user:account/manisha.choudhary@harness.io
+metadata:
+  tags:
+  - hello
+  - react
+  - pipeline
+  - onboarding

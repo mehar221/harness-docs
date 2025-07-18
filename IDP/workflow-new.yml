@@ -29,6 +29,10 @@ spec:
         ui:widget: password
         ui:field: HarnessAuthToken
         visible: false
+      techarea:
+        title: Technology Area
+        type: string
+        description: Specify the Technology Area for the component
       service_name:
         title: Service Name
         type: string
@@ -74,6 +78,7 @@ spec:
         system: ${{ parameters.component_id }}
         domain: ${{ parameters.description | join(", ") }}
         usernames: ${{ parameters.user_ids | join(",") }}
+        techarea: ${{ parameters.techarea }}
       apikey: ${{ parameters.token }}
       showOutputVariables: true
   - id: register

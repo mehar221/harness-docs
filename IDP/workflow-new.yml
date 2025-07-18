@@ -52,6 +52,7 @@ spec:
             - RestoreLongTermRetentionBackup
             - Recovery
             - testrestore
+            - newrepro
           default: PointInTimeRestore
       description:
         title: Select Environments

@@ -42,6 +42,16 @@ spec:
         type: string
         description: Unique name for the component
         ui:field: EntityNamePicker
+      create_md:
+          title: Create Mode
+          type: string
+          description: PointInTimeRestore will provision a new database from a point in time as a new DB name to the same server location. Restore will restore a deleted database to the original name (restore_timestamp_in_utc is not required). RestoreLongTermRetentionBackup will restore a database from a long term backup. Recovery will restore a database via Geo backup to a different server location.
+          enum:
+            - PointInTimeRestore
+            - Restore
+            - RestoreLongTermRetentionBackup
+            - Recovery
+          default: PointInTimeRestore
       description:
         title: Select Environments
         type: array

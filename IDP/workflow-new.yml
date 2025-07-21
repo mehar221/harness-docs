@@ -45,7 +45,7 @@ spec:
           type: string
           ui:field: HarnessProjectPicker
           ui:autofocus: true
-        techarea:
+        tech_area:
           title: Technology Area
           description: Select the Harness Technology Area
           type: string
@@ -110,7 +110,7 @@ spec:
           system: ${{ parameters.component_id }}
           domain: ${{ parameters.description | join(", ") }}
           usernames: ${{ parameters.user_ids | join(",") }}
-          techarea: ${{ parameters.techarea }}
+          tech_area: ${{ parameters.tech_area }}
           config_file: ${{ steps.fetchFile.output.content }}
         apikey: ${{ parameters.token }}
         showOutputVariables: true

@@ -1,1 +1,10 @@
+app:
+  name: python-app
+  replicas: 1
+  image: python:3.11-slim
+  containerPort: 8000
 
+service:
+  name: python-app-service
+  type: ClusterIP
+  port: 80

@@ -10,7 +10,7 @@ spec:
   output:
     links:
     - title: Pipeline Details
-      url: ${{ steps.trigger.output.PipelineUrl }}
+      url: ${{ steps.triggerPipeline.output.PipelineUrl }}
     text:
     - title: Harness Pipeline Status
       content: |
@@ -32,28 +32,24 @@ spec:
       techarea:
         title: Technology Area
         type: string
-        description: Specify the Technology Area for the component
       service_name:
         title: Service Name
         type: string
-        description: Mention the project name
       component_id:
         title: Component Name
         type: string
-        description: Unique name for the component
         ui:field: EntityNamePicker
       create_md:
-          title: Create Mode
-          type: string
-          description: PointInTimeRestore will provision a new database from a point in time as a new DB name to the same server location. Restore will restore a deleted database to the original name (restore_timestamp_in_utc is not required). RestoreLongTermRetentionBackup will restore a database from a long term backup. Recovery will restore a database via Geo backup to a different server location.
-          enum:
-            - PointInTimeRestore
-            - Restore
-            - RestoreLongTermRetentionBackup
-            - Recovery
-            - testrestore
-            - newrepro
-          default: PointInTimeRestore
+        title: Create Mode
+        type: string
+        enum:
+        - PointInTimeRestore
+        - Restore
+        - RestoreLongTermRetentionBackup
+        - Recovery
+        - testrestore
+        - newrepro
+        default: PointInTimeRestore
       description:
         title: Select Environments
         type: array
@@ -75,11 +71,17 @@ spec:
       user_ids:
         title: Developer User IDs
         type: array
-        description: List of user IDs (e.g., GitHub usernames or login IDs)
         items:
           type: string
         uniqueItems: true
   steps:
+  - id: fetchFile
+    name: Fetch Config File
+    action: fetch:file
+    input:
+      repoUrl: https://github.com/mehar221/harness-docs
+      branch: main
+      filePath: IDP/hello.txt
   - id: triggerPipeline
     name: Trigger Harness Pipeline
     action: trigger:harness-custom-pipeline
@@ -91,6 +93,7 @@ spec:
         domain: ${{ parameters.description | join(", ") }}
         usernames: ${{ parameters.user_ids | join(",") }}
         techarea: ${{ parameters.techarea }}
+        config_file: ${{ steps.fetchFile.output.content }}
       apikey: ${{ parameters.token }}
       showOutputVariables: true
   - id: register
@@ -99,8 +102,6 @@ spec:
     input:
       repoContentsUrl: ${{ steps.triggerPipeline.output.repoContentsUrl }}
       catalogInfoPath: /catalog-info.yaml
-  ownedBy:
-  - user:account/manisha.choudhary@harness.io
 metadata:
   tags:
   - hello

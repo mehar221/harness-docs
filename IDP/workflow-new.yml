@@ -32,6 +32,7 @@ spec:
         - component_id
         - owner
         - user_ids
+        - config_file
       properties:
         token:
           title: Harness Token
@@ -45,7 +46,7 @@ spec:
           type: string
           ui:field: HarnessProjectPicker
           ui:autofocus: true
-        tech_area:
+        techarea:
           title: Technology Area
           description: Select the Harness Technology Area
           type: string
@@ -92,14 +93,12 @@ spec:
           items:
             type: string
           uniqueItems: true
+        config_file:
+          title: Config File Content
+          type: string
+          description: Paste the content of the config file here
+          ui:widget: textarea
   steps:
-    - id: fetchFile
-      name: Fetch Config File
-      action: fetch:file
-      input:
-        repoUrl: https://github.com/mehar221/harness-docs
-        branch: main
-        filePath: IDP/hello.txt
     - id: triggerPipeline
       name: Trigger Harness Pipeline
       action: trigger:harness-custom-pipeline
@@ -110,10 +109,11 @@ spec:
           system: ${{ parameters.component_id }}
           domain: ${{ parameters.description | join(", ") }}
           usernames: ${{ parameters.user_ids | join(",") }}
-          tech_area: ${{ parameters.tech_area }}
-          config_file: ${{ steps.fetchFile.output.content }}
+          techarea: ${{ parameters.techarea }}
+          config_file: ${{ parameters.config_file }}
         apikey: ${{ parameters.token }}
         showOutputVariables: true
+
     - id: register
       name: Register in Backstage
       action: catalog:register

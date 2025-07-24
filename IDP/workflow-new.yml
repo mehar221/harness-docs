@@ -68,6 +68,7 @@ spec:
             - Recovery
             - testrestore
             - newrepro
+            - testcall
           default: PointInTimeRestore
         description:
           title: Select Environments

@@ -1,123 +1,120 @@
 apiVersion: harness.io/v1
 kind: Workflow
-name: workflow-new
-identifier: workflownew
 type: component
-owner: user:account/manisha.choudhary@harness.io
-projectIdentifier: Abhi
-project_name: Abhi
+identifier: workflownew
+name: workflow-new
+owner: group:test
 orgIdentifier: default
-org_name: default
-metadata:
-  tags:
-    - hello
-    - react
-    - pipeline
-    - onboarding
-    - test-tag
-    - testnewtag
+projectIdentifier: Abhi
 spec:
   output:
     links:
-      - title: Pipeline Details
-        url: ${{ steps.triggerPipeline.output.PipelineUrl }}
+    - title: Pipeline Details
+      url: ${{ steps.triggerPipeline.output.PipelineUrl }}
     text:
-      - title: Harness Pipeline Status
-        content: |
-          Harness pipeline triggered for user IDs: `${{ parameters.user_ids | join(", ") }}`
+    - title: Harness Pipeline Status
+      content: |
+        Harness pipeline triggered for user IDs: `${{ parameters.user_ids | join(", ") }}`
   lifecycle: prod
   parameters:
-    - title: Component & Access Info
-      required:
-        - component_id
-        - owner
-        - user_ids
-        - config_file
-      properties:
-        token:
-          title: Harness Token
-          type: string
-          ui:widget: password
-          ui:field: HarnessAuthToken
-          visible: false
-        projectId:
-          title: Application CI
-          description: Select the Harness ApplicationCI
-          type: string
-          ui:field: HarnessProjectPicker
-          ui:autofocus: true
-        techarea:
-          title: Technology Area
-          description: Select the Harness Technology Area
-          type: string
-          ui:field: HarnessAutoOrgPicker
-        service_name:
-          title: Service Name
-          type: string
-        component_id:
-          title: Component Name
-          type: string
-          ui:field: EntityNamePicker
-        create_md:
-          title: Create Mode
+  - title: Component & Access Info
+    required:
+    - component_id
+    - owner
+    - user_ids
+    - config_file
+    properties:
+      token:
+        title: Harness Token
+        type: string
+        ui:widget: password
+        ui:field: HarnessAuthToken
+        visible: false
+      projectId:
+        title: Application CI
+        description: Select the Harness ApplicationCI
+        type: string
+        ui:field: HarnessProjectPicker
+        ui:autofocus: true
+      techarea:
+        title: Technology Area
+        description: Select the Harness Technology Area
+        type: string
+        ui:field: HarnessAutoOrgPicker
+      service_name:
+        title: Service Name
+        type: string
+      component_id:
+        title: Component Name
+        type: string
+        ui:field: EntityNamePicker
+      create_md:
+        title: Create Mode
+        type: string
+        enum:
+        - PointInTimeRestore
+        - Restore
+        - RestoreLongTermRetentionBackup
+        - Recovery
+        - testrestore
+        - newrepro
+        - testcall
+        default: PointInTimeRestore
+      description:
+        title: Select Environments
+        type: array
+        items:
           type: string
           enum:
-            - PointInTimeRestore
-            - Restore
-            - RestoreLongTermRetentionBackup
-            - Recovery
-            - testrestore
-            - newrepro
-            - testcall
-          default: PointInTimeRestore
-        description:
-          title: Select Environments
-          type: array
-          items:
-            type: string
-            enum:
-              - production
-              - staging
-              - development
-          uniqueItems: true
-          ui:widget: checkboxes
-        owner:
-          title: Owner
+          - production
+          - staging
+          - development
+        uniqueItems: true
+        ui:widget: checkboxes
+      owner:
+        title: Owner
+        type: string
+        ui:field: OwnerPicker
+        ui:options:
+          allowedKinds:
+          - Group
+      user_ids:
+        title: Developer User IDs
+        type: array
+        items:
           type: string
-          ui:field: OwnerPicker
-          ui:options:
-            allowedKinds:
-              - Group
-        user_ids:
-          title: Developer User IDs
-          type: array
-          items:
-            type: string
-          uniqueItems: true
-        config_file:
-          title: Config File Content
-          type: string
-          description: Paste the content of the config file here
-          ui:widget: textarea
+        uniqueItems: true
+      config_file:
+        title: Config File Content
+        type: string
+        description: Paste the content of the config file here
+        ui:widget: textarea
   steps:
-    - id: triggerPipeline
-      name: Trigger Harness Pipeline
-      action: trigger:harness-custom-pipeline
-      input:
-        url: https://app.harness.io/ng/account/akx2lmy5SnOFm549xPhFKQ/all/orgs/default/projects/Abhi/pipelines/testpipelineUAL/pipeline-studio/?storeType=INLINE
-        inputset:
-          service_name: ${{ parameters.service_name }}
-          system: ${{ parameters.component_id }}
-          domain: ${{ parameters.description | join(", ") }}
-          usernames: ${{ parameters.user_ids | join(",") }}
-          techarea: ${{ parameters.techarea }}
-          config_file: ${{ parameters.config_file }}
-        apikey: ${{ parameters.token }}
-        showOutputVariables: true
-
-    - id: register
-      name: Register in Backstage
-      action: catalog:register
-      input:
-        repoContentsUrl: ${{ steps.triggerPipeline.output.repoContentsUrl }}
-        catalogInfoPath: /catalog-info.yaml
+  - id: triggerPipeline
+    name: Trigger Harness Pipeline
+    action: trigger:harness-custom-pipeline
+    input:
+      url: https://app.harness.io/ng/account/akx2lmy5SnOFm549xPhFKQ/all/orgs/default/projects/Abhi/pipelines/testpipelineUAL/pipeline-studio/?storeType=INLINE
+      inputset:
+        service_name: ${{ parameters.service_name }}
+        system: ${{ parameters.component_id }}
+        domain: ${{ parameters.description | join(", ") }}
+        usernames: ${{ parameters.user_ids | join(",") }}
+        techarea: ${{ parameters.techarea }}
+        config_file: ${{ parameters.config_file }}
+      apikey: ${{ parameters.token }}
+      showOutputVariables: true
+  - id: register
+    name: Register in Backstage
+    action: catalog:register
+    input:
+      repoContentsUrl: ${{ steps.triggerPipeline.output.repoContentsUrl }}
+      catalogInfoPath: /catalog-info.yaml
+metadata:
+  tags:
+  - hello
+  - react
+  - pipeline
+  - onboarding
+  - test-tag
+  - testnewtag

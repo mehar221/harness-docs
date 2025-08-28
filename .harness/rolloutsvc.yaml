@@ -40,7 +40,7 @@ service:
             actions:
               - FetchFiles
             store:
-              content: echo "hello"
+              content: echo "hello world"
     type: Kubernetes
   tags:
     svcnew: test

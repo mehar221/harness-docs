@@ -1,0 +1,30 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: TestTemplate
+  title: TestTemplate
+  description: TestTemplate
+  tags:
+    - service
+spec:
+  owner: DCP
+  type: eks
+  # these are the steps which are rendered in the frontend with the form input
+  parameters:
+    - title: Fill in the repo details
+      required:
+        - node_version
+      properties:
+        node_version:
+          title: Node Version
+          type: string
+          description: Node Version
+          enum:
+            - "20.5.0"
+            - "22.4.0"
+          default: "22.4.0"
+        token:
+          title: Harness Token
+          type: string
+          ui:widget: password
+          ui:field: HarnessAuthToken

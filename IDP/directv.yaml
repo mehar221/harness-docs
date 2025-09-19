@@ -7,9 +7,8 @@ metadata:
   tags:
     - service
 spec:
-  owner: DCP
+  owner: group:default/DCP        # Fully qualified owner
   type: eks
-  # these are the steps which are rendered in the frontend with the form input
   parameters:
     - title: Fill in the repo details
       required:

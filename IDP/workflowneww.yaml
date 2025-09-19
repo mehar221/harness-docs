@@ -1,0 +1,55 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+# some metadata about the template itself
+metadata:
+  name: add-user-execution-metadatatest
+  title: add-user-execution-metadatatest
+  description: add-user-execution-metadatatest
+  tags:
+    - harness
+    - "30"
+spec:
+  owner: group:default/ankit
+  type: harness_project
+# Edit the template parameters below to see how they will render in the scaffolder form UI
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+      properties:      
+        token:
+          title: Harness Token
+          type: string
+          ui:widget: password
+          ui:field: HarnessAuthToken
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+  steps:  
+    - id: provision_workspace
+      name: Onboarding user
+      action: trigger:harness-custom-pipeline
+      input:
+        url: https://app.harness.io/ng/account/qmrzY7joS9SsdtHPFP8WHQ/module/cd/orgs/default/projects/Manisha/pipelines/getMetaData/pipeline-studio/?storeType=INLINE
+        inputset:
+          triggeredByName: ${{ user.entity.metadata.name }}
+          triggeredByEmail: ${{ user.entity.spec.profile.email }}
+        apikey: ${{ parameters.token }}
+        showOutputVariables: true
+  output:
+    text:
+      - title: Outputs
+        apiKeySecret: prod-harness-idp-workflow-executor-token
+        content: |
+          url: ${{ steps.provision_workspace.output.PipelineUrl }}
+          Output Variable Name is: ${{ steps.provision_workspace.output['pipeline.stages.idp.spec.execution.steps.Run_1.output.outputVariables.executorName>'] }} 
+          Output Variable Email is: ${{ steps.provision_workspace.output['pipeline.stages.idp.spec.execution.steps.Run_1.output.outputVariables.executorEmail>'] }}

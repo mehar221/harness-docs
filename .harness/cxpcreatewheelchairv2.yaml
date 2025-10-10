@@ -1,0 +1,45 @@
+apiVersion: harness.io/v1
+kind: Component
+type: service
+identifier: cxpcreatewheelchairv2
+name: cxpcreatewheelchairv2
+owner: group:ual_harness_airportops_cxp_admin_dgg
+spec:
+  lifecycle: production
+  providesApis:
+    - cxp_createwheelchair_v2-api
+  dependsOn:
+    - component:default/cxp_createwheelchaircsl-api
+    - component:default/cxp_checkwheelchair-api
+  consumesApis:
+    - component:default/cxp_checkwheelchair-api
+metadata:
+  description: Create Wheelchair API is used to handle all new adhoc requests made by the vendor
+  annotations:
+    harness.io/pipelines: "build: https://app.harness.io/ng/account/H6rHO8vtQYKelD_wgjnMpA/module/ci/orgs/AirportOps/projects/CXP/pipelines/AirportOps_CXP_CXP_SSR_CreateWheelChair_V2_MS/pipeline-studio?storeType=INLIN"
+    backstage.io/kubernetes-id: cxp_createwheelchair_v2
+    backstage.io/kubernetes-namespace: cxp-services
+    harness.io/services: "cd: https://app.harness.io/ng/account/H6rHO8vtQYKelD_wgjnMpA/module/cd/orgs/AirportOps/projects/CXP/services/cxp_createwheelchair_v2"
+    github.com/project-slug: United-Airlines-Org/AirportOps.CXP.CXP-SSR-CreateWheelChair-V2-MS
+    backstage.io/techdocs-ref: url:https://github.com/United-Airlines-Org/PlatformEngineering.IDP-templates/tree/main/catalog-entities/AirportOps/CXP/components/cxp_createwheelchair_v2
+    sonarqube.org/project-key: cloud/AirportOps_CXP_CXP_SSR_CreateWheelChair_V2_MS
+    harness.io/perspective-url: ""
+    harness.io/project-url: https://app.harness.io/ng/account/H6rHO8vtQYKelD_wgjnMpA/cd/orgs/AirportOps/projects/CXP
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/instance=cxp-createwheelchair-v2
+    dynatrace.com/dynatrace-entity-id: ""
+    lighthouse.com/website-url: https://harness.io
+    backstage.io/kubernetes-cluster-group: AirportOps-CXP-ClusterGroup
+    backstage.io/source-location: url:https://github.com/United-Airlines-Org/AirportOps.CXP.CXP-SSR-CreateWheelChair-V2-MS
+  links: []
+  tags:
+    - dev
+    - qa
+    - stg
+    - prd
+    - dotnet8.0
+    - airportops
+    - cxp
+    - eks
+
+
+

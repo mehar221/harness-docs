@@ -6,42 +6,35 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: deploy
-        identifier: deploy
+        name: customer
+        identifier: customer
         description: ""
-        type: Deployment
+        type: Custom
         spec:
-          deploymentType: Kubernetes
-          service:
-            serviceRef: rolloutsvcnew
-          environment:
-            environmentRef: devenv
-            gitBranch: main
-            deployToAll: false
-            infrastructureDefinitions:
-              - identifier: infratest
           execution:
             steps:
-              - step:
-                  name: Rollout Deployment
-                  identifier: rolloutDeployment
-                  type: K8sRollingDeploy
-                  timeout: 10m
-                  spec:
-                    skipDryRun: false
-                    pruningEnabled: false
-            rollbackSteps:
-              - step:
-                  name: Rollback Rollout Deployment
-                  identifier: rollbackRolloutDeployment
-                  type: K8sRollingRollback
-                  timeout: 10m
-                  spec:
-                    pruningEnabled: false
+              - stepGroup:
+                  name: sgtest
+                  identifier: sgtest
+                  steps:
+                    - step:
+                        type: ShellScript
+                        name: ShellScript_1
+                        identifier: ShellScript_1
+                        spec:
+                          shell: Bash
+                          executionTarget: {}
+                          source:
+                            type: Inline
+                            spec:
+                              script: echo <+stepGroup.identifierPostFix>
+                          environmentVariables: []
+                          outputVariables: []
+                        timeout: 10m
+                  strategy:
+                    repeat:
+                      items:
+                        - "18"
+                        - "17"
+                        - "16"
         tags: {}
-        failureStrategies:
-          - onFailure:
-              errors:
-                - AllErrors
-              action:
-                type: StageRollback

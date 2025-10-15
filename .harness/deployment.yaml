@@ -48,10 +48,10 @@ pipeline:
           service:
             serviceRef: rolloutsvcnew
           environment:
-            environmentRef: devenv
+            environmentRef: dummy
             deployToAll: false
             infrastructureDefinitions:
-              - identifier: infratest
+              - identifier: infra
           execution:
             steps:
               - step:

@@ -43,7 +43,7 @@ pipeline:
         tags: {}
     - stage:
         name: deploy
-        identifier: deploy
+        identifier: deployed
         description: ""
         type: Deployment
         spec:

@@ -27,7 +27,7 @@ pipeline:
                           source:
                             type: Inline
                             spec:
-                              script: echo <+stepGroup.identifierPostFix>
+                              script: echo "<+stepgroup.name>"+"<+stepGroup.identifierPostFix>"
                           environmentVariables: []
                           outputVariables: []
                         timeout: 10m

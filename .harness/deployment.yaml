@@ -27,7 +27,7 @@ pipeline:
                           source:
                             type: Inline
                             spec:
-                              script: echo <+stepGroup.name>
+                              script: echo <+pipeline.stages.customer.spec.deploymentType>
                           environmentVariables: []
                           outputVariables: []
                         timeout: 10m

@@ -69,7 +69,7 @@ pipeline:
                       spec:
                         script: |-
                           echo <+pipeline.stages.deploy.spec.type>
-                          echo <+pipeline.stages.deploy.spec.type>
+                          echo <+pipeline.stages.deployed.spec.type>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m

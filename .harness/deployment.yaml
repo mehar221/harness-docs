@@ -29,7 +29,8 @@ pipeline:
                             spec:
                               script: |-
                                 echo <+pipeline.stages.customer.type>
-                                echo <+pipeline.stages.deploy.spec.type>
+                                echo <+pipeline.stages.deploy.spec.deploymentType>
+                                echo <+pipeline.stages.deploy.type>
                           environmentVariables: []
                           outputVariables: []
                         timeout: 10m

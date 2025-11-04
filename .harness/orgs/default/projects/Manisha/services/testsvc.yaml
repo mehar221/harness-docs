@@ -1,6 +1,6 @@
 
 service:
-  name: testt-svc
+  name: testt-svcc
   identifier: testtsvc
   orgIdentifier: default
   projectIdentifier: Manisha

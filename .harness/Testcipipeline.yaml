@@ -62,5 +62,5 @@ pipeline:
     - name: Retry_count
       type: String
       description: ""
-      required: false
+      required: true
       value: <+execution.steps.Run_1.retryCount>

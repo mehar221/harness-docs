@@ -24,7 +24,7 @@ spec:
         service_name:
           title: Service Name
           type: string
-          description: Mention the project name
+          description: Mention the project name yeahhh
   steps:
     - id: trigger
       name: Creating your appication

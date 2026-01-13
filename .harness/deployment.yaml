@@ -104,5 +104,5 @@ pipeline:
                           echo <+pipeline.stages.deploy.type>
                     environmentVariables: []
                     outputVariables: []
-                  timeout: 15m
+                  timeout: 10m
         tags: {}

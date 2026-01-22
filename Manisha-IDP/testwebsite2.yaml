@@ -1,0 +1,14 @@
+apiVersion: harness.io/v1
+kind: Component
+name: testwebsite2
+identifier: testwebsite2
+type: website
+owner: group:account/_account_all_users
+spec:
+  lifecycle: production
+metadata:
+  tags:
+    - manisha
+    - test
+    - new
+    - java

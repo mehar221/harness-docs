@@ -1,7 +1,7 @@
 pipeline:
   name: GitEx Example
   identifier: GitEx_Example
-  projectIdentifier: Git_Sync
+  projectIdentifier: Manisha
   orgIdentifier: default
   tags: {}
   stages:

@@ -25,3 +25,5 @@ service:
   gitOpsEnabled: false
   orgIdentifier: default
   projectIdentifier: Manisha
+  tags:
+    hello: hi

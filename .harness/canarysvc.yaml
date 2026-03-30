@@ -1,5 +1,5 @@
 service:
-  name: canary-svc
+  name: canary-svc-tesrrr
   identifier: canarysvc
   serviceDefinition:
     type: Kubernetes

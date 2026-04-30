@@ -26,4 +26,4 @@ service:
   orgIdentifier: default
   projectIdentifier: Manisha
   tags:
-    hello: hi
+    hello: hii

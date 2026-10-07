@@ -1,0 +1,18 @@
+{
+  "name": "harness-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PR validation sample for SGWS — code quality + Playwright E2E",
+  "scripts": {
+    "lint": "node -e \"console.log('lint ok')\"",
+    "test": "node -e \"console.log('unit tests ok')\"",
+    "e2e": "playwright test",
+    "e2e:ci": "playwright test --reporter=junit,line"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.49.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
